@@ -258,7 +258,6 @@ ul.arrow li{padding: 0 0 1px 14px;background: url(../images/arrow.png) no-repeat
 .open-block-acc,.open-block{ font-family: 'PT Sans', sans-serif,'Lucida Sans','Lucida Grande','Lucida Sans Unicode',sans-serif;}
 .open-block-acc:hover,.open-block a:hover{ background-color:#ddd}
 
-
 /* Responsive
 -------------------------------------------------- */
 @media (max-width: 480px) {

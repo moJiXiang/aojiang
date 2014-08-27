@@ -1,0 +1,239 @@
+<div class="container">
+	<div class="row">
+  		<div class="span12 divider-strip cms-head">
+  			<h4>澳江紧固件制造有限公司后台</h4>
+  			<span class="strip-block"></span>
+		</div>
+  	</div>
+
+  	<div class="tabbable"> <!-- Only required for left/right tabs -->
+	  	<ul class="nav nav-tabs">
+		    <li class="active"><a href="#tab1" data-toggle="tab">产品列表</a></li>
+		    <li><a href="#tab2" data-toggle="tab">文章列表</a></li>
+		    <li><a href="#tab3" data-toggle="tab">行业动态</a></li>
+		    <li><a href="#tab4" data-toggle="tab">属性编辑</a></li>
+	  	</ul>
+	  	<div class="tab-content">
+		    <div class="tab-pane active" id="tab1">
+  				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newproductModal">新增产品</button>
+			    <table class="table table-hover">
+					<thead>
+						<tr>
+							<th>产品名称</th>
+							<th>类别</th>
+							<th>主要产品</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2</td>
+							<td>3</td>
+							<td>4</td>
+						</tr>
+					</tbody>
+				</table>
+		    </div>
+		    <div class="tab-pane" id="tab2">
+		      <p>Howdy, I'm in Section 2.</p>
+		    </div>
+		    <div class="tab-pane" id="tab3">
+		      <p>Howdy, I'm in Section 3.</p>
+		    </div>
+		    <div class="tab-pane" id="tab4">
+  				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newAttribute">新增属性</button>
+  				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>属性</th>
+							<th>值</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2</td>
+							<td>3</td>
+						</tr>
+					</tbody>
+				</table>
+		    </div>
+	  	</div>
+	</div>
+
+  	<!-- Modal -->
+	<div class="modal fade" id="newproductModal" tabindex="-1" role="dialog" aria-labelledby="newproductModal" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+	        <h4 class="modal-title" id="myModalLabel">产品</h4>
+	      </div>
+	      <div class="modal-body">
+		      <form class="form-horizontal product" role="form" action="">
+		      	<div class="control-group error">
+				    <label class="control-label" for="name">名称</label>
+				    <div class="controls">
+				      <input type="text" name="name" placeholder="T型钉">
+				      <span class="text-error">*</span>
+				    </div>
+			  	</div>
+		       	<div class="control-group error">
+				    <label class="control-label" for="main">是否主要产品</label>
+				    <div class="controls">
+  						<input type="checkbox" name="main">
+				      	<span class="text-error">*</span>
+				    </div>
+			  	</div>
+			  	<div class="control-group error">
+				    <label class="control-label" for="classes">类别</label>
+				    <div class="controls">
+				      	<input type="text" name="classes" placeholder="机螺钉">
+				      	<span class="text-error">*</span>
+				    </div>
+			  	</div>
+			  	<div class="control-group error">
+				    <label class="control-label" for="applyrange">应用范围</label>
+				    <div class="controls">
+				      	<input type="text" name="applyrange" placeholder="机械工业用紧固件">
+			      		<span class="text-error">*</span>
+				    </div>
+			  	</div>
+			  	<div class="control-group">
+				    <label class="control-label" for="unitprice">单价</label>
+				    <div class="controls">
+				      <input type="text" name="unitprice" placeholder="0.15">
+				    </div>
+			  	</div>
+			  	<div class="control-group">
+				    <label class="control-label" for="custom">加工定制</label>
+				    <div class="controls">
+				      <input type="checkbox" name="custom" placeholder="是">
+				    </div>
+			  	</div>
+			  	<div class="control-group">
+				    <label class="control-label" for="sample">样品现货</label>
+				    <div class="controls">
+				    	<label class="radio">
+						  <input type="radio" name="sample" value="样品" checked>
+						  样品
+						</label>
+						<label class="radio">
+						  <input type="radio" name="sample" value="现货">
+						  现货
+						</label>
+				    </div>
+			  	</div>
+			  	<div class="control-group">
+				    <label class="control-label" for="headform">头型</label>
+				    <div class="controls">
+				    	<select name="headform">
+				    		<option value="">T形头</option>
+				    		<option value="">T形头</option>
+				    	</select>
+				    </div>
+			  	</div>
+			  	<div class="control-group">
+				    <label class="control-label" for="standardtype">标准类型</label>
+				    <div class="controls">
+				      <input type="text" name="standardtype" placeholder="国标">
+				    </div>
+			  	</div>
+			  	<div class="control-group">
+				    <label class="control-label" for="standardnum">标准编号</label>
+				    <div class="controls">
+				      <input type="text" name="standardnum" placeholder="GB9074.8">
+				    </div>
+			  	</div>
+			  	<div class="control-group">
+				    <label class="control-label" for="type">型号</label>
+				    <div class="controls">
+				      <input type="text" name="type" placeholder="GB800">
+				    </div>
+			  	</div>
+			  	<div class="control-group">
+				    <label class="control-label" for="groove">槽型</label>
+				    <div class="controls">
+				      <input type="text" name="groove" placeholder="十字">
+				    </div>
+			  	</div>
+			  	<div class="control-group">
+				    <label class="control-label" for="screwthreads">螺纹规格</label>
+				    <div class="controls">
+				      <input type="text" name="screwthreads" placeholder="M1.6-M10">
+				    </div>
+			  	</div>
+			  	<div class="control-group">
+				    <label class="control-label" for="action">作用方式</label>
+				    <div class="controls">
+				      <input type="text" name="action" placeholder="手拧">
+				    </div>
+			  	</div>
+			  	<div class="control-group">
+				    <label class="control-label" for="length">公称长度</label>
+				    <div class="controls">
+				      <input type="text" name="length" placeholder="3mm">
+				    </div>
+			  	</div>
+			  	<div class="control-group">
+				    <label class="control-label" for="material">材料</label>
+				    <div class="controls">
+				      <input type="text" name="material" placeholder="不锈钢">
+				    </div>
+			  	</div>
+			  	<div class="control-group">
+				    <label class="control-label" for="materialgrade">材料等级</label>
+				    <div class="controls">
+				      <input type="text" name="materialgrade" placeholder="10.9">
+				    </div>
+			  	</div>
+			  	<div class="control-group">
+				    <label class="control-label" for="surfacetreatment">表面处理</label>
+				    <div class="controls">
+				      <input type="text" name="surfacetreatment" placeholder="磨砂">
+				    </div>
+			  	</div>
+		      </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" class="btn btn-primary" id="saveproduct">保存</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="newAttribute" tabindex="-1" role="dialog" aria-labelledby="newAttribute" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+	        <h4 class="modal-title" id="myModalLabel">属性</h4>
+	      </div>
+	      <div class="modal-body" style="min-height:400px;">
+		      	<form class="form-horizontal attribute" role="form" action="">
+			      	<div class="input-prepend">
+					  	<span class="add-on">属性</span>
+					  	<select class="span2" name="name">
+		                	<option value="classes">类别</option>
+		                	<option value="headform">头型</option>
+		                	<option value="groove">槽型</option>
+		                </select>
+					</div>
+		      		<div class="input-prepend">
+					  	<span class="add-on">值</span>
+		                <input class="span2" name="value" type="text">
+		            </div>
+					</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" class="btn btn-primary" id="saveattr">保存</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="javascripts/cms.js"></script>
