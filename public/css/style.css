@@ -257,6 +257,56 @@ ul.arrow li{padding: 0 0 1px 14px;background: url(../images/arrow.png) no-repeat
 .toggle-box {float: left;padding: 10px;}
 .open-block-acc,.open-block{ font-family: 'PT Sans', sans-serif,'Lucida Sans','Lucida Grande','Lucida Sans Unicode',sans-serif;}
 .open-block-acc:hover,.open-block a:hover{ background-color:#ddd}
+.modal.fade{
+	top: -80%;
+}
+.fileinput-button {
+	position: relative;
+}
+.fileinput-button input {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	opacity: 0;
+	-ms-filter: 'alpha(opacity=0)';
+	font-size: 200px;
+	direction: ltr;
+	cursor: pointer;
+}
+.ellipsis {
+    margin: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#choosebox {
+    padding: 5px;
+    width: 150px;
+    border: 1px solid #ccc;
+    background: #E5E5E5;
+    cursor: pointer;
+}
+
+.form-horizontal .form-actions {
+    padding-left: 180px;
+}
+
+.form-actions {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    background-color: #F5F5F5;
+    border-top: 1px solid #E5E5E5;
+}
+
+.btn:hover {
+    background: #E5E5E5;
+}
+
+.hide {
+	display: none;
+}
 
 /* Responsive
 -------------------------------------------------- */

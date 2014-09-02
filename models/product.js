@@ -7,7 +7,7 @@ var ProductSchema = new Schema({
 	image: Array,
 	main : Boolean, //是否主要产品
 	classes : String, //类别
-	applyrange : {type:String, default:"机械工业用紧固件"}, //应用范围
+	applyrange : {type:String}, //应用范围
 	unitprice : Number,//单价
 	custom : Boolean, //加工定制
 	sample : Boolean, //样品还是现货
@@ -34,10 +34,19 @@ ProductSchema.statics = {
 	 * @return {array}       return product array
 	 */
 	listProduct : function(opt, cb) {
-		var criteria = { main: opt.main };
+		var criteria = opt.main ? { main: opt.main } : {};
 		this.find(criteria)
-			.limit(opt.limit || 3)
+			.limit(opt.limit)
 			.exec(cb);
+	},
+	createPro : function(item, cb) {
+		this.create(item, function(err, doc) {
+			if (err) {
+				console.log(err);
+			} else {
+				cb(doc);
+			}
+		})
 	}
 }
 mongoose.model('Product', ProductSchema);

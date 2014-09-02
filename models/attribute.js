@@ -8,8 +8,18 @@ var AttributeSchema = new Schema({
 });
 
 AttributeSchema.statics = {
-	CreateAttr : function() {
-		this.create({})
+	listAttr : function(opt, cb) {
+		this.find(opt)
+			.exec(cb);
+	},
+	createAttr : function(item, cb) {
+		this.create(item, function(err, doc) {
+			if (err) {
+				console.log(err);
+			} else {
+				cb(doc);
+			}
+		})
 	}
 }
 

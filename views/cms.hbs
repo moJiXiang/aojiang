@@ -16,20 +16,38 @@
 	  	<div class="tab-content">
 		    <div class="tab-pane active" id="tab1">
   				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newproductModal">新增产品</button>
-			    <table class="table table-hover">
+			    <table class="table table-hover" id="productstable">
 					<thead>
 						<tr>
 							<th>产品名称</th>
 							<th>类别</th>
 							<th>主要产品</th>
+							<th>操作</th>
+							<th>图片</th>
 						</tr>
 					</thead>
 					<tbody>
+						{{#products}}
 						<tr>
-							<td>2</td>
-							<td>3</td>
-							<td>4</td>
+							<td>{{name}}</td>
+							<td>{{classes}}</td>
+							<td>{{main}}</td>
+							<td>
+								<button type="button" class="btn btn-primary delpro" data-id="{{_id}}">删除</button>
+							</td>
+							<td>
+	          					<input class="fileupload" type="file" name="img" data-url="product/upload/{{_id}}">
+  								<!-- <div id="choosebox" class="ellipsis">点击选择图片</div>
+	          					<form class="form-horizontal" id="image_form" action="/imgUpload" method="post" enctype="multipart/form-data">
+								    <input class="hide" type="file" id="file" name="img" />
+								    <div class="form-actions">
+								      <button class="btn" id="upload">上传头像</button>
+								      <span id="imgerr"></span><img class="hide" id="imgload" height="14px" width="14px" src="/images/loading.gif">
+								    </div>
+								  </form> -->
+							</td>
 						</tr>
+						{{/products}}
 					</tbody>
 				</table>
 		    </div>
@@ -41,18 +59,22 @@
 		    </div>
 		    <div class="tab-pane" id="tab4">
   				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newAttribute">新增属性</button>
-  				<table class="table table-hover">
+  				<table class="table table-hover" id="attributetable">
 					<thead>
 						<tr>
 							<th>属性</th>
 							<th>值</th>
+							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody>
+					{{#attributes}}
 						<tr>
-							<td>2</td>
-							<td>3</td>
+							<td>{{name}}</td>
+							<td>{{value}}</td>
+							<td><button type="button" class="btn btn-primary delattr" data-id="{{_id}}">删除</button></td>
 						</tr>
+					{{/attributes}}
 					</tbody>
 				</table>
 		    </div>
@@ -86,14 +108,22 @@
 			  	<div class="control-group error">
 				    <label class="control-label" for="classes">类别</label>
 				    <div class="controls">
-				      	<input type="text" name="classes" placeholder="机螺钉">
+				    	<select name="classes">
+				    		{{#classes}}
+				    		<option value="{{value}}">{{value}}</option>
+				    		{{/classes}}
+				    	</select>
 				      	<span class="text-error">*</span>
 				    </div>
 			  	</div>
 			  	<div class="control-group error">
 				    <label class="control-label" for="applyrange">应用范围</label>
 				    <div class="controls">
-				      	<input type="text" name="applyrange" placeholder="机械工业用紧固件">
+				    	<select name="applyrange">
+				    		{{#applyrange}}
+				    		<option value="{{value}}">{{value}}</option>
+				    		{{/applyrange}}
+				    	</select>
 			      		<span class="text-error">*</span>
 				    </div>
 			  	</div>
@@ -126,33 +156,50 @@
 				    <label class="control-label" for="headform">头型</label>
 				    <div class="controls">
 				    	<select name="headform">
-				    		<option value="">T形头</option>
-				    		<option value="">T形头</option>
+				    		{{#headform}}
+				    		<option value="{{value}}">{{value}}</option>
+				    		{{/headform}}
 				    	</select>
 				    </div>
 			  	</div>
 			  	<div class="control-group">
 				    <label class="control-label" for="standardtype">标准类型</label>
 				    <div class="controls">
-				      <input type="text" name="standardtype" placeholder="国标">
+				    	<select name="standardtype">
+				    		{{#standardtype}}
+				    		<option value="{{value}}">{{value}}</option>
+				    		{{/standardtype}}
+				    	</select>
 				    </div>
 			  	</div>
 			  	<div class="control-group">
 				    <label class="control-label" for="standardnum">标准编号</label>
 				    <div class="controls">
-				      <input type="text" name="standardnum" placeholder="GB9074.8">
+				    	<select name="standardnum">
+				    		{{#standardnum}}
+				    		<option value="{{value}}">{{value}}</option>
+				    		{{/standardnum}}
+				    	</select>
 				    </div>
 			  	</div>
 			  	<div class="control-group">
 				    <label class="control-label" for="type">型号</label>
 				    <div class="controls">
-				      <input type="text" name="type" placeholder="GB800">
+				    	<select name="type">
+				    		{{#type}}
+				    		<option value="{{value}}">{{value}}</option>
+				    		{{/type}}
+				    	</select>
 				    </div>
 			  	</div>
 			  	<div class="control-group">
 				    <label class="control-label" for="groove">槽型</label>
 				    <div class="controls">
-				      <input type="text" name="groove" placeholder="十字">
+				    	<select name="groove">
+				    		{{#groove}}
+				    		<option value="{{value}}">{{value}}</option>
+				    		{{/groove}}
+				    	</select>
 				    </div>
 			  	</div>
 			  	<div class="control-group">
@@ -164,7 +211,11 @@
 			  	<div class="control-group">
 				    <label class="control-label" for="action">作用方式</label>
 				    <div class="controls">
-				      <input type="text" name="action" placeholder="手拧">
+				    	<select name="action">
+				    		{{#action}}
+				    		<option value="{{value}}">{{value}}</option>
+				    		{{/action}}
+				    	</select>
 				    </div>
 			  	</div>
 			  	<div class="control-group">
@@ -176,7 +227,11 @@
 			  	<div class="control-group">
 				    <label class="control-label" for="material">材料</label>
 				    <div class="controls">
-				      <input type="text" name="material" placeholder="不锈钢">
+				    	<select name="material">
+				    		{{#material}}
+				    		<option value="{{value}}">{{value}}</option>
+				    		{{/material}}
+				    	</select>
 				    </div>
 			  	</div>
 			  	<div class="control-group">
@@ -188,7 +243,11 @@
 			  	<div class="control-group">
 				    <label class="control-label" for="surfacetreatment">表面处理</label>
 				    <div class="controls">
-				      <input type="text" name="surfacetreatment" placeholder="磨砂">
+				    	<select name="surfacetreatment">
+				    		{{#surfacetreatment}}
+				    		<option value="{{value}}">{{value}}</option>
+				    		{{/surfacetreatment}}
+				    	</select>
 				    </div>
 			  	</div>
 		      </form>
@@ -215,13 +274,20 @@
 					  	<span class="add-on">属性</span>
 					  	<select class="span2" name="name">
 		                	<option value="classes">类别</option>
+		                	<option value="applyrange">应用范围</option>
 		                	<option value="headform">头型</option>
+		                	<option value="standardtype">标准类型</option>
+		                	<option value="standardnum">标准编号</option>
+		                	<option value="type">型号</option>
 		                	<option value="groove">槽型</option>
+		                	<option value="action">作用方式</option>
+		                	<option value="material">材料</option>
+		                	<option value="surfacetreatment">表面处理</option>
 		                </select>
 					</div>
 		      		<div class="input-prepend">
 					  	<span class="add-on">值</span>
-		                <input class="span2" name="value" type="text">
+		                <input class="span2" name="value" type="text"> 
 		            </div>
 					</form>
 	      </div>
@@ -235,5 +301,4 @@
 	
 </div>
 
-<script src="js/jquery.js"></script>
-<script src="javascripts/cms.js"></script>
+<script data-main="/javascripts/cms.js" src="/js/require.js"></script>
