@@ -67,28 +67,14 @@
 <div class="divider"></div> 
 
 <div class="row">
-
+{{#mainproducts}}
  <div class="span4 block-info">
-  <h3><a href="#" class="home-title">T型钉</a></h3>
-  <img src="/img/slider-img03.jpg" alt="" style="margin:25px 0 20px">
-  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.</p>
+  <h3><a href="#" class="home-title">{{name}}</a></h3>
+  <img src="/images/products/bigsize/{{image.[0]}}" alt="" style="margin:25px 0 20px">
+  <p>{{introduce}}</p>
   <a class="btn pull-right" href="#">read more</a>
  </div>
- 
- <div class="span4 block-info">
-  <h3><a href="#" class="home-title">T型钉</a></h3>
-  <img src="/img/slider-img02.jpg" alt="" style="margin:25px 0 20px">
-  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.</p>
-  <a class="btn pull-right" href="#">read more</a>
- </div>
- 
- <div class="span4 block-info">
-  <h3><a href="#" class="home-title">T型钉</a></h3>
-  <img src="/img/slider-img03.jpg" alt="" style="margin:25px 0 20px">
-  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.</p>
-  <a class="btn pull-right" href="#">read more</a>
- </div>
- 
+ {{/mainproducts}}
 </div>
 
  
@@ -103,47 +89,19 @@
   </div>
 
   <ul class="thumbnails">
+    {{#products}}
     <li class="span3 item-block">
      <a href="/img/bootstrap-mdo-sfmoma-01.jpg" class="zoom" rel="prettyPhoto" title="Image Title"></a>
      <a href="portfolio.html" class="link"></a>
       <a class="thumbnail" href="portfolio.html">
-        <img src="/img/example-sites/example1.jpg" alt="example-item">
+        <img src="/images/products/bigsize/{{}}" alt="example-item">
       </a>
       <div class="desc">
       <a href="portfolio.html"> Images </a>
        <p> <em>Portfolio Item Images </em></p>
       </div>
     </li>
-    <li class="span3 item-block">
-     
-       <iframe src="http://player.vimeo.com/video/28220269?title=0&amp;byline=0&amp;portrait=0" width="270" height="135" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-      <div class="desc">
-      <a href="portfolio.html">Vimeo Video </a>
-       <p> <em>Portfolio Item Images</em> </p>
-      </div>
-    </li>
-   <li class="span3 item-block">
-     <a href="/img/bootstrap-mdo-sfmoma-01.jpg" class="zoom" rel="prettyPhoto" title="Image Title"></a>
-     <a href="portfolio.html" class="link"></a>
-      <a class="thumbnail" href="portfolio.html">
-        <img src="/img/example-sites/example1.jpg" alt="example-item">
-      </a>
-      <div class="desc">
-      <a href="portfolio.html"> Images </a>
-       <p> <em>Portfolio Item Images</em> </p>
-      </div>
-    </li>
-    <li class="span3 item-block">
-     <div class="row">
-      <div class="span3">
-     <video src="/media/VH_videoAsset.flv" type="video/flv" controls="controls"></video>
-     </div>
-     </div>
-      <div class="desc">
-      <a href="portfolio.html"> Local Video </a>
-       <p> <em>Portfolio Item Images</em> </p>
-      </div>
-    </li>
+    {{/product}}
   </ul>
   
  <!-- Our Services

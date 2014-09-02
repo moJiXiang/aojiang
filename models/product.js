@@ -4,7 +4,9 @@ var ObjectId = mongoose.Types.ObjectId;
 
 var ProductSchema = new Schema({
 	name : String,
+	coverimage : String,
 	image: Array,
+	introduce : String, // 产品简介
 	main : Boolean, //是否主要产品
 	classes : String, //类别
 	applyrange : {type:String}, //应用范围
@@ -23,7 +25,7 @@ var ProductSchema = new Schema({
 	// height : String, //高度
 	material : String, // 材料
 	materialgrade : String, //材料等级
-	surfacetreatment : String, //表面处理
+	surfacetreatment : String //表面处理
 })
 
 ProductSchema.statics = {

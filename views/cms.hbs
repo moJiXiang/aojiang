@@ -23,6 +23,7 @@
 							<th>类别</th>
 							<th>主要产品</th>
 							<th>操作</th>
+							<th>大图</th>
 							<th>图片</th>
 						</tr>
 					</thead>
@@ -36,15 +37,10 @@
 								<button type="button" class="btn btn-primary delpro" data-id="{{_id}}">删除</button>
 							</td>
 							<td>
-	          					<input class="fileupload" type="file" name="img" data-url="product/upload/{{_id}}">
-  								<!-- <div id="choosebox" class="ellipsis">点击选择图片</div>
-	          					<form class="form-horizontal" id="image_form" action="/imgUpload" method="post" enctype="multipart/form-data">
-								    <input class="hide" type="file" id="file" name="img" />
-								    <div class="form-actions">
-								      <button class="btn" id="upload">上传头像</button>
-								      <span id="imgerr"></span><img class="hide" id="imgload" height="14px" width="14px" src="/images/loading.gif">
-								    </div>
-								  </form> -->
+	          					<input class="fileupload" type="file" name="img" data-url="product/upload/big/{{_id}}">
+							</td>
+							<td>
+	          					<input class="fileupload" type="file" name="img" data-url="product/upload/small/{{_id}}">
 							</td>
 						</tr>
 						{{/products}}
@@ -95,6 +91,13 @@
 				    <label class="control-label" for="name">名称</label>
 				    <div class="controls">
 				      <input type="text" name="name" placeholder="T型钉">
+				      <span class="text-error">*</span>
+				    </div>
+			  	</div>
+			  	<div class="control-group error">
+				    <label class="control-label" for="introduce">名称</label>
+				    <div class="controls">
+				      <textarea type="text" name="introduce" placeholder="产品简介"></textarea>
 				      <span class="text-error">*</span>
 				    </div>
 			  	</div>

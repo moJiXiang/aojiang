@@ -5,7 +5,7 @@ var Product = require('../models').Product;
 /** this npm package modify req.files**/
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
-var config = require(../config).config;
+var config = require('../config').config;
 var gm = require('gm')
 ,	fs = require('fs')
 ,	imageMagick = gm.subClass({ imageMagick : true });
@@ -17,33 +17,29 @@ router.post('/add', function(req, res) {
 	})
 })
 
-router.post('/upload/:id', multipartMiddleware,  function(req, res) {
-	console.log('*************');
-	console.log(req.files)
+router.post('/upload/:size/:id', multipartMiddleware,  function(req, res) {
 	
 	var path = req.files.img.path;	//获取用户上传过来的文件的当前路径
-	
+	var size = req.params.size;
+	var id = req.params.id;
+	var imgname = req.files.img.name;
+	var width = size == "big" ? config.imgSizeBig.width : config.imgSizeSm.width;
+	var height = size == "big" ? config.imgSizeBig.height : config.imgSizeSm.height;
+	var writepath = size == "big" ? "public/images/products/bgsize/" ? "public/images/products/smsize/"
+
 	imageMagick(path)
-	.resize(config.imgSizeBig.width, config.imgSizeBig.height, '!') //加('!')强行把图片缩放成对应尺寸150*150！
+	.resize(width, height, '!') //加('!')强行把图片缩放成对应尺寸150*150！
 	.autoOrient()
-	.write('public/images/products/bgsize/'+req.files.img.name, function(err){
+	.write(writepath + imgname, function(err){
 		if (err) {
 			console.log(err);
 			res.end();
+		} 
+		if(size == "big"){
+			Product.findByIdAndUpdate(id, { coverimage : imgname });
 		} else {
-			imageMagick(path)
-				.resize(config.imgSizeSm.width, config.imgSizeSm.height, '!') //加('!')强行把图片缩放成对应尺寸150*150！
-				.autoOrient()
-				.write('public/images/products/smsize/'+req.files.img.name, function(err){
-					if(err) {
-						console.log(err);
-						res.end();
-					}
-				}
+			Product.findByIdAndUpdate(id, {$push:{image : imgname}});
 		}
-		// fs.unlink(path, function() {
-		// 	return res.end('3');
-		// });
 	});
 })
 
