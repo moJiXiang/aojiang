@@ -5,7 +5,7 @@ require.config({
 		'handlebar' : 'handlebars-v1.3.0'
 	}
 })
-define(['jquery', 'handlebar', "text!/template/product.hbs", "text!/template/attribute.hbs", 'jquery.upload', 'jquery.ui.widget', 'jquery.iframe-transport', 'jquery.fileupload'], function($, handlebar, productView, attributeView){
+define(['jquery', 'handlebar', "text!/template/product.hbs", "text!/template/attribute.hbs", 'jquery.ui.widget', 'jquery.iframe-transport', 'jquery.fileupload','../javascripts/header'], function($, handlebar, productView, attributeView){
 	/**
 	 * add new product
 	 */

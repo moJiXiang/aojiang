@@ -69,10 +69,11 @@
 <div class="row">
 {{#mainproducts}}
  <div class="span4 block-info">
-  <h3><a href="#" class="home-title">{{name}}</a></h3>
-  <img src="/images/products/bigsize/{{image.[0]}}" alt="" style="margin:25px 0 20px">
+  <h4>test</h4>
+  <h3><a href="/product/{{_id}}" class="home-title">{{name}}</a></h3>
+  <img src="/images/products/bigsize/{{coverimage}}" alt="" style="margin:25px 0 20px">
   <p>{{introduce}}</p>
-  <a class="btn pull-right" href="#">read more</a>
+  <a class="btn pull-right" href="/product/{{_id}}">read more</a>
  </div>
  {{/mainproducts}}
 </div>
@@ -91,17 +92,17 @@
   <ul class="thumbnails">
     {{#products}}
     <li class="span3 item-block">
-     <a href="/img/bootstrap-mdo-sfmoma-01.jpg" class="zoom" rel="prettyPhoto" title="Image Title"></a>
-     <a href="portfolio.html" class="link"></a>
-      <a class="thumbnail" href="portfolio.html">
-        <img src="/images/products/bigsize/{{}}" alt="example-item">
+     <a href="/images/products/smsize/{{image.[0]}}" class="zoom" rel="prettyPhoto" title="{{name}}"></a>
+     <a href="product/{{_id}}" class="link"></a>
+      <a class="thumbnail" href="product/{{_id}}">
+        <img src="/images/products/smsize/{{image.[0]}}" alt="example-item">
       </a>
       <div class="desc">
-      <a href="portfolio.html"> Images </a>
-       <p> <em>Portfolio Item Images </em></p>
+      <a href="product/{{_id}}">{{name}} </a>
+       <p> <em>{{applyrange}}</em></p>
       </div>
     </li>
-    {{/product}}
+    {{/products}}
   </ul>
   
  <!-- Our Services
@@ -224,6 +225,9 @@
   
   <div class="divider"></div>
 
-    </div>
+</div>
+
+<script data-main="/javascripts/main.js" src="/js/require.js"></script>
+
 
      

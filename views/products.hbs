@@ -24,128 +24,19 @@
 ================================================== -->
  
 <ul class="thumbnails portfolio" id="containment-portfolio">
+  {{#products}}
     <li class="span3 item-block web all">
-     <a href="img/bootstrap-mdo-sfmoma-01.jpg" class="zoom" rel="prettyPhoto" title="Image Title"></a>
-     <a href="#" class="link"></a>
-      <a class="thumbnail" href="portfolio-single.html">
-        <img src="img/example-sites/example1.jpg" alt="example-item">
+      <a class="thumbnail" href="product/{{_id}}">
+        <img src="/images/products/smsize/{{image.[0]}}" alt="example-item">
       </a>
       <div class="desc">
-      <a href="portfolio-single-2.html"> Images </a>
-       <p> <em>Portfolio Item Images</em> </p>
+        <a href="portfolio-single-2.html">{{name}}</a>
+        <p> <em>{{applyrange}}</em> </p>
       </div>
     </li>
-    <li class="span3 item-block video all">
-     <iframe src="http://player.vimeo.com/video/28220269?title=0&amp;byline=0&amp;portrait=0" width="270" height="130" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-      <div class="desc">
-      <a href="portfolio-single-3.html">Vimeo Video </a>
-       <p> <em>Portfolio Item Vimeo</em> </p>
-      </div>
-    </li>
-   <li class="span3 item-block web all">
-     <a href="img/bootstrap-mdo-sfmoma-01.jpg" class="zoom" rel="prettyPhoto" title="Image Title"></a>
-     <a href="#" class="link"></a>
-      <a class="thumbnail" href="#">
-        <img src="img/example-sites/example1.jpg" alt="example-item">
-      </a>
-      <div class="desc">
-      <a href="portfolio-single.html"> Images </a>
-       <p> <em>Portfolio Item Images</em> </p>
-      </div>
-    </li>
-    <li class="span3 item-block">
-     <a href="img/bootstrap-mdo-sfmoma-01.jpg" class="zoom" rel="prettyPhoto" title="Image Title"></a>
-     <a href="#" class="link"></a>
-      <a class="thumbnail" href="#">
-        <img src="img/example-sites/example2.jpg" alt="example-item">
-      </a>
-      <div class="desc">
-      <a href="portfolio-single-2.html"> Images </a>
-       <p> <em>Portfolio Item Images</em> </p>
-      </div>
-    </li>
-    <li class="span3 item-block audio all">
-     <audio src="media/adg3com_electrofreak.mp3" type="audio/mp3" controls="controls"></audio>
-      <div class="desc">
-      <a href="portfolio-single.html">Local Audio </a>
-       <p> <em>Portfolio Item Audio</em> </p>
-      </div>
-    </li>
-    <li class="span3 item-block">
-     <a href="img/bootstrap-mdo-sfmoma-01.jpg" class="zoom" rel="prettyPhoto" title="Image Title"></a>
-     <a href="#" class="link"></a>
-      <a class="thumbnail" href="#">
-        <img src="img/example-sites/example2.jpg" alt="example-item">
-      </a>
-      <div class="desc">
-      <a href="portfolio-single.html"> Images </a>
-       <p> <em>Portfolio Item Images</em> </p>
-      </div>
-    </li>
-   <li class="span3 item-block">
-     <a href="img/bootstrap-mdo-sfmoma-01.jpg" class="zoom" rel="prettyPhoto" title="Image Title"></a>
-     <a href="#" class="link"></a>
-      <a class="thumbnail" href="#">
-        <img src="img/example-sites/example1.jpg" alt="example-item">
-      </a>
-      <div class="desc">
-      <a href="portfolio-single.html"> Images </a>
-       <p> <em>Portfolio Item Images</em> </p>
-      </div>
-    </li>
-    <li class="span3 item-block video all">
-     <div class="row">
-      <div class="span3">
-     <video src="media/VH_videoAsset.flv" type="video/flv" controls="controls"></video>
-     </div>
-     </div>
-      <div class="desc">
-      <a href="portfolio-single-3.html"> Local Video </a>
-       <p> <em>Portfolio Item Local Video</em> </p>
-      </div>
-    </li>
-    <li class="span3 item-block web all">
-     <a href="img/bootstrap-mdo-sfmoma-01.jpg" class="zoom" rel="prettyPhoto" title="Image Title"></a>
-     <a href="#" class="link"></a>
-      <a class="thumbnail" href="portfolio-single.html">
-        <img src="img/example-sites/example1.jpg" alt="example-item">
-      </a>
-      <div class="desc">
-      <a href="portfolio-single-2.html"> Images </a>
-       <p> <em>Portfolio Item Images</em> </p>
-      </div>
-    </li>
-    <li class="span3 item-block video all">
-     <iframe src="http://player.vimeo.com/video/28220269?title=0&amp;byline=0&amp;portrait=0" width="270" height="130" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-      <div class="desc">
-      <a href="portfolio-single-3.html">Vimeo Video </a>
-       <p> <em>Portfolio Item Vimeo</em> </p>
-      </div>
-    </li>
-   <li class="span3 item-block web all">
-     <a href="img/bootstrap-mdo-sfmoma-01.jpg" class="zoom" rel="prettyPhoto" title="Image Title"></a>
-     <a href="#" class="link"></a>
-      <a class="thumbnail" href="#">
-        <img src="img/example-sites/example1.jpg" alt="example-item">
-      </a>
-      <div class="desc">
-      <a href="portfolio-single.html"> Images </a>
-       <p> <em>Portfolio Item Images</em> </p>
-      </div>
-    </li>
-    <li class="span3 item-block">
-     <a href="img/bootstrap-mdo-sfmoma-01.jpg" class="zoom" rel="prettyPhoto" title="Image Title"></a>
-     <a href="#" class="link"></a>
-      <a class="thumbnail" href="#">
-        <img src="img/example-sites/example2.jpg" alt="example-item">
-      </a>
-      <div class="desc">
-      <a href="portfolio-single-2.html"> Images </a>
-       <p> <em>Portfolio Item Images</em> </p>
-      </div>
-    </li>
+    {{/products}}
   </ul>
 </section>
   <div class="divider"></div>
 
-    </div><!-- /container -->
+</div><!-- /container -->

@@ -15,6 +15,7 @@ router.get('/', function(req, res) {
 			Product.listProduct({main: false, limit: 4}, cb);
 		}
 	}, function(err, result) {
+		console.log(result);
 		res.render('main', {
 			site: config,
 			mainproducts: result.mainproducts,
@@ -27,9 +28,19 @@ router.get('/about', function(req, res) {
 });
 
 router.get('/products', function(req, res) {
-  res.render('products', { site: config });
+	Product.listProduct({}, function(err, doc) {
+		if(err){
+			console.log(err);
+		} else {
+			console.log(doc);
+			res.render('products', { site: config,products : doc});
+		}
+	})
 });
-
+// router.get('/product/:id', function(req, res) {
+	
+// 			res.render('product', { site: config});
+// });
 router.get('/messages', function(req, res) {
   res.render('messages', { site: config });
 });
