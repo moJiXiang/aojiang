@@ -48,10 +48,49 @@
 				</table>
 		    </div>
 		    <div class="tab-pane" id="tab2">
-		      <p>Howdy, I'm in Section 2.</p>
+		      	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newmessageModal">add message</button>
+			    <table class="table table-hover" id="messagestable">
+					<thead>
+						<tr>
+							<th>名称</th>
+							<th>time</th>
+							<th>action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#messages}}
+						<tr>
+							<td>{{title}}</td>
+							<td>{{createat}}</td>
+							<td>
+								<button type="button" class="btn btn-primary delpro" data-id="{{_id}}">删除</button>
+							</td>
+						</tr>
+						{{/messages}}
+					</tbody>
+				</table>
 		    </div>
 		    <div class="tab-pane" id="tab3">
-		      <p>Howdy, I'm in Section 3.</p>
+		      <table class="table table-hover" id="messagestable">
+					<thead>
+						<tr>
+							<th>名称</th>
+							<th>time</th>
+							<th>action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#industries}}
+						<tr>
+							<td>{{title}}</td>
+							<td>{{createat}}</td>
+							<td>
+								<button type="button" class="btn btn-primary delpro" data-id="{{_id}}">删除</button>
+							</td>
+						</tr>
+						{{/industries}}
+					</tbody>
+				</table>
 		    </div>
 		    <div class="tab-pane" id="tab4">
   				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newAttribute">新增属性</button>
@@ -104,8 +143,14 @@
 		       	<div class="control-group error">
 				    <label class="control-label" for="main">是否主要产品</label>
 				    <div class="controls">
-  						<input type="checkbox" name="main">
-				      	<span class="text-error">*</span>
+				    	<label class="radio">
+						  <input type="radio" name="main" value="true" checked>
+						  yes
+						</label>
+						<label class="radio">
+						  <input type="radio" name="main" value="false">
+						  no
+						</label>
 				    </div>
 			  	</div>
 			  	<div class="control-group error">
@@ -302,6 +347,50 @@
 	  </div>
 	</div>
 	
+	<!-- Modal -->
+	<div class="modal fade" id="newmessageModal" tabindex="-1" role="dialog" aria-labelledby="newmessageModal" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+	        <h4 class="modal-title" id="myModalLabel">message</h4>
+	      </div>
+	      <div class="modal-body" style="min-height:400px;">
+		      	<form class="form-horizontal message" role="form" action="">
+			      	<div class="control-group">
+					    <label class="control-label" for="title">名称</label>
+					    <div class="controls">
+					      <input type="text" name="title" placeholder="T型钉">
+					    </div>
+				  	</div>
+				  	<div class="control-group error">
+					    <label class="control-label" for="isindustry">is industry</label>
+					    <div class="controls">
+				    	<label class="radio">
+						  <input type="radio" name="isindustry" value="true" checked>
+						  yes
+						</label>
+						<label class="radio">
+						  <input type="radio" name="isindustry" value="false">
+						  no
+						</label>
+				    </div>
+				  	</div>
+				  	<div class="control-group">
+					    <label class="control-label" for="content">content</label>
+					    <div class="controls">
+				      		<textarea name="content" placeholder="产品简介"></textarea>
+					    </div>
+				  	</div>
+				</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" class="btn btn-primary" id="savemsg">保存</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 </div>
 
 <script data-main="/javascripts/cms.js" src="/js/require.js"></script>

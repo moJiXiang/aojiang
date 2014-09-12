@@ -147,7 +147,6 @@ a.thumbnail,a.thumbnail:hover{ border:none;}
 .item-block .desc p{ color:#aeaeae;}
 .item-block .zoom {width:40px; height:40px;background:url(../img/zoom.png) no-repeat top center; display:block; position:absolute; top:55px; left:-70px; z-index:155;}
 .item-block .link{width:40px; height:40px;background:url(../img/link.png) no-repeat top center; display:block; position:absolute; top:55px; right:-70px; z-index:155;}
-
 /***** Portfolio filter *****/
 
 ul#portfolio-filter{ margin-bottom:30px; padding: 0;float:left; }

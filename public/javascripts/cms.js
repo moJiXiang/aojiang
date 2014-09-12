@@ -2,10 +2,15 @@ require.config({
 	baseUrl : 'js',
 	paths : {
 		'jquery' : 'jquery',
-		'handlebar' : 'handlebars-v1.3.0'
+		'handlebars' : 'handlebars-v1.3.0'
+	},
+	shim : {
+		"handlebars" : {
+			exports : 'Handlebars'
+		}
 	}
 })
-define(['jquery', 'handlebar', "text!/template/product.hbs", "text!/template/attribute.hbs", 'jquery.upload', 'jquery.ui.widget', 'jquery.iframe-transport', 'jquery.fileupload'], function($, handlebar, productView, attributeView){
+define(['jquery', 'handlebars', "text!/template/product.hbs", "text!/template/attribute.hbs", "text!/template/message.hbs", 'jquery.ui.widget', 'jquery.iframe-transport', 'jquery.fileupload','../javascripts/header'], function($, Handlebars, productView, attributeView, messageView){
 	/**
 	 * add new product
 	 */
@@ -77,6 +82,17 @@ define(['jquery', 'handlebar', "text!/template/product.hbs", "text!/template/att
 			console.log(typeof(data.status));
 			if(data.status == 200) {
 				element.remove();
+			}
+		})
+	})
+
+	$('#savemsg').click(function() {
+		var msg = $('form.message').serializeArray();
+		$.post('/message/add', msg, function(data) {
+			if(data.status == 200) {
+				var tr = Handlebars.compile(messageView)(data.result);
+				$('#messagestable').children('tbody').append(tr);
+				$('#newmessageModal').modal('hide');
 			}
 		})
 	})
