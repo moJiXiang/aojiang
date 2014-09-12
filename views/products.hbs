@@ -4,28 +4,22 @@
 ================================================== -->
 <section>
 <div class="row">
- <ul id="portfolio-filter" class="span12">
-                    <li>
-                        <a href="javascript:void(0)" title="" class="currents">All</a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)" title="">Web</a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)" title="">Video</a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)" title="">Audio</a>
-                    </li>
-                </ul>
-  </div>
+  <ul id="portfolio-filter" class="span12">
+      <li>
+          <a href="javascript:void(0)" title="" class="currents">All</a>
+      </li>
+      <li>
+          <a href="javascript:void(0)" title="">sdf</a>
+      </li>
+  </ul>
+</div>
   
 <!-- Portfolio item
 ================================================== -->
  
 <ul class="thumbnails portfolio" id="containment-portfolio">
   {{#products}}
-    <li class="span3 item-block web all">
+    <li class="span3 item-block {{classes}} all">
       <a class="thumbnail" href="product/{{_id}}">
         <img src="/images/products/smsize/{{image.[0]}}" alt="example-item">
       </a>
@@ -40,3 +34,4 @@
   <div class="divider"></div>
 
 </div><!-- /container -->
+<script data-main="/javascripts/product.js" src="/js/require.js"></script>

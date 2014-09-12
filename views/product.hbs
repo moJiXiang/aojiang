@@ -1,7 +1,44 @@
-<div class="container">
-	<h4>34234</h4>
 
-	<div class="divider"></div>
+<div class="container">
+	{{#product}}
+	<section>
+	<div class="row">
+
+		<div class="span8">
+
+			<div class="row">
+			<!-- Images
+			================================================== -->
+			  <div class="span8">
+
+			      <img src="/images/products/bigsize/{{coverimage}}" alt="" height="350" />
+			    
+			  </div>
+			  </div>
+
+		</div>
+
+		<!-- Project info
+		================================================== -->
+		<div class="span4">
+			<div class="divider-strip block-title" style="margin-top:0;"><h4>Product Name</h4><span class="strip-block"></span></div>
+			<p>{{name}}</p>
+
+			<div class="divider-strip block-title"><h4>Applyrange</h4><span class="strip-block"></span></div>
+			<p>{{applyrange}}</p>
+
+			<div class="divider-strip block-title"><h4>Technologies</h4><span class="strip-block"></span></div>
+			<p>{{screwthreads}}</p>
+
+			<div class="divider-strip block-title"><h4>Type</h4><span class="strip-block"></span></div>
+			<p>{{type}}</p>
+		</div>
+	</div>
+	</section>
+	{{/product}}
+  
+<div class="divider"></div>
 
 </div><!-- /container -->
+
 <script data-main="/javascripts/product.js" src="/js/require.js"></script>

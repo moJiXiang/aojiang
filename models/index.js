@@ -11,7 +11,9 @@ mongoose.connect(config.db, function(err) {
 // models
 require('./product');
 require('./attribute');
+require('./message');
 
 exports.Product = mongoose.model('Product');
 exports.Attribute = mongoose.model('Attribute');
+exports.Message = mongoose.model('Message');
 

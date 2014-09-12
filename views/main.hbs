@@ -1,60 +1,22 @@
 
 
+
 <div class="slider-home">
 
 <div class="container">
  <div class="row">
-  <div class="span12">
 
 <!-- Slider
 ================================================== -->
-  <div id="header-container">
-    
-		<div id="header">
-
-				<img class="prev" src="/images/bt-prev.png" alt="Previous Frame" />
-				<img class="next" src="/images/bt-next.png" alt="Next Frame" />
-				
-			<div id="sequence">
-				<ul style="margin:0;">
-					<li>
-						<h2 class="title">Creative <span>Template</span></h2>
-						<h3 class="subtitle">Responsive Business &amp; Portfolio Template</h3>
-						<img class="model animate-in" src="/images/model1.png" alt="Model 1" />
-					</li>
-					<li>
-						<h2 class="title">Creative <span>Design</span></h2>
-						<h3 class="subtitle">Responsive Business &amp; Portfolio Template</h3>
-						<img class="model" src="/images/model2.png" alt="Model 2" />
-					</li>
-					<li>
-						<h2 class="title">Creative <span>Template</span></h2>
-						<h3 class="subtitle">Responsive Business &amp; Portfolio Template</h3>
-						<img class="model" src="/images/model3.png" alt="Model 3" />
-					</li>
-                    <li class="frame4">
-						<h2 class="title">Creative <span>Design</span></h2>
-						<h3 class="subtitle">Responsive Business &amp; Portfolio Template<br>
-<a class="btn btn-large btn-success pull-right" href="#" style="margin-top:20px;">Buy This Template</a></h3>
-						<img class="model" src="/images/model4.png" alt="Model 4" />
-					</li>
-				</ul>
-			</div>
-           
-            
-		</div>
-	</div>
-    
-    <div style="position:relative">
-     <ul id="nav">
-				<li><img src="/images/tn-model1.png" alt="Model 1" /></li>
-				<li><img src="/images/tn-model2.png" alt="Model 2" /></li>
-				<li><img src="/images/tn-model3.png" alt="Model 3" /></li>
-                <li><img src="/images/tn-model4.png" alt="Model 4" /></li>
-			</ul>
-    </div>
-
+  <div class="span12 cont-bs">
+   <!-- Slideshow -->
+    <ul class="rslides rslides1">
+      {{#mainproducts}}
+      <li><img src="images/products/bigsize/{{coverimage}}" alt="" /><div class="caption">{{name}}</div></li>
+      {{/mainproducts}}
+    </ul>
   </div>
+
  </div>
 </div>
 
@@ -151,23 +113,21 @@
     <div class="row">
   
     <div class="span6">
-    <div class="divider-strip block-title"><h4>最新资讯</h4><span class="strip-block"></span></div>
+      <div class="divider-strip block-title"><h4>最新资讯</h4><span class="strip-block"></span></div>
       <div class="row">
-    <div class="span3 blog-home">
-     <img src="/img/blog-examples/blog-home.jpg" alt="">
-     <ul class="meta pull-left"><li class="data">21 may<br>2012</li><li class="post-format image"><span></span></li></ul>
-     <h3><a href="#">Lorem ipsum dolor sit amet</a></h3> 
-     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa...</p>
-     <a href="blog.html" class="btn">Read more</a>
-    </div>
-    <div class="span3 blog-home">
-    <iframe src="http://player.vimeo.com/video/28220269?title=0&amp;byline=0&amp;portrait=0" width="270" height="100" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-    <ul class="meta pull-left"><li class="data">21 may<br>2012</li><li class="post-format video"><span></span></li></ul>
-     <h3><a href="#">Lorem ipsum dolor sit amet</a></h3> 
-     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa...</p>
-     <a href="blog.html" class="btn">Read more</a>
-    </div>
-    </div>
+        {{#messages}}
+        <div class="span3 blog-home">
+         <img src="/img/blog-examples/blog-home.jpg" alt="">
+         <ul class="meta pull-left">
+           <li class="data">{{createat}}</li>
+           <li class="post-format image"><span></span></li>
+         </ul>
+         <h3><a href="#">{{title}}</a></h3> 
+         <p>{{content}}</p>
+         <a href="blog.html" class="btn">Read more</a>
+        </div>
+        {{/messages}}
+      </div>
     </div>
     
     <div class="span6">
@@ -176,26 +136,12 @@
       <div class="testimonialswrap" data-autorotate="3000">
 		
 		<ul class="testimonials-slider" id="testimonials">
+      {{#industries}}
 			<li class="testimonials-slide">	
-				 <blockquote><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-<small>John Doe</small></blockquote>
+				 <blockquote><p>{{content}}</p>
+          <small>{{title}}</small></blockquote>
 			</li>
-			<li class="testimonials-slide">	
-				<blockquote><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-<small>John Doe</small></blockquote>
-			</li>
-			<li class="testimonials-slide">	
-				<blockquote><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-<small>John Doe</small></blockquote>
-			</li>
-			<li class="testimonials-slide">	
-				<blockquote><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-<small>John Doe</small></blockquote>
-			</li>
-			<li class="testimonials-slide">	
-				<blockquote><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-<small>John Doe</small></blockquote>
-			</li>
+      {{/industries}}
 		</ul>
         
         <div class="testimonials-controls">
@@ -210,16 +156,6 @@
 
 <div class="row">
  <div class="divider"></div>    
-<!-- Promo
-================================================== -->
- 
- <div class="well no-padding-lr span12">
- <div class="row promo-buy">
-  <div class="span9"><h1 class="center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </h1></div>
-  <div class="span3"><a class="btn btn-large btn-success right margin-right" href="#"><i class="icon-shopping-cart icon-white"></i> Buy This Template »</a></div>
- </div>
- </div>
-  
    
   </div>
   

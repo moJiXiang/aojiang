@@ -4,6 +4,7 @@ var config = require('../config').config;
 var async = require('async');
 var Product = require('../models').Product;
 var Attribute = require('../models').Attribute;
+var Message = require('../models').Message;
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -13,13 +14,22 @@ router.get('/', function(req, res) {
 		},
 		products : function(cb) {
 			Product.listProduct({main: false, limit: 4}, cb);
+		},
+		messages : function(cb) {
+			Message.listMsg({isindustry : false, limit: 2}, cb)
+		},
+		industries : function(cb) {
+			Message.listMsg({isindustry : true, limit: 5}, cb)
 		}
+
 	}, function(err, result) {
 		console.log(result);
 		res.render('main', {
 			site: config,
 			mainproducts: result.mainproducts,
-			products: result.products
+			products: result.products,
+			messages : result.messages,
+			industries : result.industries
 		})
 	})
 });
@@ -42,13 +52,32 @@ router.get('/products', function(req, res) {
 // 			res.render('product', { site: config});
 // });
 router.get('/messages', function(req, res) {
-  res.render('messages', { site: config });
+	async.auto({
+		messages : function(cb) {
+			Message.listMsg({isindustry : false, limit: 2}, cb)
+		},
+		products : function(cb) {
+			Product.listProduct({main : true, limit: 5}, cb)
+		}
+	}, function(err, result) {
+		res.render('messages', {
+			site: config,
+			messages : result.messages,
+			products : result.products
+		})
+	})
 });
 
 router.get('/cms', function(req, res) {
 	async.auto({
 		products : function (cb) {
 			Product.listProduct({}, cb);
+		},
+		messages : function (cb) {
+			Message.listMsg({isindustry : false}, cb);
+		},
+		industries : function (cb) {
+			Message.listMsg({isindustry : true}, cb);
 		},
 		attributes : function (cb) {
 			Attribute.listAttr({}, cb);
@@ -88,6 +117,8 @@ router.get('/cms', function(req, res) {
 		res.render('cms', {
 			site: config,
 			products : result.products,
+			messages : result.messages,
+			industries : result.industries,
 			attributes: result.attributes,
 			classes : result.classes,
 			applyrange : result.applyrange,
