@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/product', express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/site'));
 app.use('/attribute', require('./routes/attribute'));
