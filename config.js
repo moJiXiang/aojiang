@@ -8,7 +8,10 @@ var config = {
 	db : "mongodb://heroku_app28771802:eq9ujlvsg2s13ajq12o4v89ft3@ds063919.mongolab.com:63919/heroku_app28771802",
 	db_name : "aojiang",
 	imgSizeBig : {width: 1170, height: 350},
-	imgSizeSm : {width: 300, height: 150}
+	imgSizeSm : {width: 300, height: 150},
+	bucketname : "aojiang",
+	username : 'mojixiang',
+	password : 'xiaomo11025270'
 };
 
 module.exports.config = config;

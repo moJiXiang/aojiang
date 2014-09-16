@@ -5,10 +5,25 @@ var Product = require('../models').Product;
 /** this npm package modify req.files**/
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
+var UPYun = require('../upyun/upyun').UPYun;
 var config = require('../config').config;
 var gm = require('gm')
 ,	fs = require('fs')
 ,	imageMagick = gm.subClass({ imageMagick : true });
+
+//初始化空间
+var upyun = new UPYun(config.buckname, config.username, config.password);
+
+function upToYun(src_path_name,target_path_name,callback){
+	var fs =  require('fs');
+	var fileContent = fs.readFileSync(src_path_name);
+	upyun.writeFile(target_path_name, fileContent, false, function(err, data){
+	    if (err) {
+	       callback(err);
+	    }else
+	    	callback(null,data);
+	});
+}
 
 router.post('/add', function(req, res) {
 	var product = req.body;
@@ -29,36 +44,46 @@ router.post('/upload/:size/:id', multipartMiddleware,  function(req, res) {
 	var height = size == "big" ? config.imgSizeBig.height : config.imgSizeSm.height;
 	var writepath = size == "big" ? "public/images/products/bigsize/" : "public/images/products/smsize/";
 
-	imageMagick(path)
-	.resize(width, height, '!') //加('!')强行把图片缩放成对应尺寸150*150！
-	.autoOrient()
-	.write(writepath + imgname, function(err){
-		if (err) {
+	var src_path_name = path;
+	var target_path_name = imgname;
+	console.log(src_path_name, target_path_name)
+	upToYun(src_path_name, target_path_name, function(err, result){
+		if(err)
 			console.log(err);
-			res.end();
-		} else {
-			fs.unlink(path, function() {
-				return res.end();
-			});
-			if(size == "big"){
-
-				Product.findByIdAndUpdate(id, {$set:{coverimage : imgname }}, function(err) {
-					if(err) {
-						console.log(err);
-						res.end();
-					}
-				});
-			} else {
-				console.log(size);
-				Product.findByIdAndUpdate(id, {$push:{image : imgname}}, function(err) {
-					if(err) {
-						console.log(err);
-						res.end();
-					}
-				});
-			}
+		else {
+			cb(null, result)
 		}
-	});
+	})
+	// imageMagick(path)
+	// .resize(width, height, '!') //加('!')强行把图片缩放成对应尺寸150*150！
+	// .autoOrient()
+	// .write(writepath + imgname, function(err){
+	// 	if (err) {
+	// 		console.log(err);
+	// 		res.end();
+	// 	} else {
+	// 		fs.unlink(path, function() {
+	// 			return res.end();
+	// 		});
+	// 		if(size == "big"){
+
+	// 			Product.findByIdAndUpdate(id, {$set:{coverimage : imgname }}, function(err) {
+	// 				if(err) {
+	// 					console.log(err);
+	// 					res.end();
+	// 				}
+	// 			});
+	// 		} else {
+	// 			console.log(size);
+	// 			Product.findByIdAndUpdate(id, {$push:{image : imgname}}, function(err) {
+	// 				if(err) {
+	// 					console.log(err);
+	// 					res.end();
+	// 				}
+	// 			});
+	// 		}
+	// 	}
+	// });
 })
 
 router.get('/:id/del', function(req, res) {
