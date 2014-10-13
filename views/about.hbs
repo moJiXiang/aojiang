@@ -50,8 +50,8 @@
 
   <div class="span4">
 
-    <div class="divider-strip block-title"><h4>热门产品s</h4><span class="strip-block"></span></div>
-      <p><em>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </em></p>
+    <div class="divider-strip block-title"><h4>热门产品</h4><span class="strip-block"></span></div>
+      <p><em>这些产品，我们技术更专业！</em></p>
      <!--  <div class="carousel" id="Carousel" data-autorotate="3000">
         <div class="carousel-inner" id="carousel-inner">
 
@@ -67,21 +67,11 @@
     <div class="testimonialswrap" data-autorotate="3000">
       
       <ul class="testimonials-slider" id="testimonials">
+        {{#each products}}
         <li class="testimonials-slide"> 
-          <img src="img/blog-examples/blog-home-c3.jpg" alt="" width="370">
+          <img src="http://aojiang.b0.upaiyun.com/lg/{{coverimage}}" alt="" width="370">
         </li>
-        <li class="testimonials-slide"> 
-          <img src="img/blog-examples/blog-home-c3.jpg" alt="" width="370">
-        </li>
-        <li class="testimonials-slide"> 
-          <img src="img/blog-examples/blog-home-c3.jpg" alt="" width="370">
-        </li>
-        <li class="testimonials-slide"> 
-          <img src="img/blog-examples/blog-home-c3.jpg" alt="" width="370">
-        </li>
-        <li class="testimonials-slide"> 
-          <img src="img/blog-examples/blog-home-c3.jpg" alt="" width="370">
-        </li>
+        {{/each}}
       </ul>
           
       <div class="testimonials-controls">

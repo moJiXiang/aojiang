@@ -12,7 +12,7 @@
    <!-- Slideshow -->
     <ul class="rslides rslides1">
       {{#mainproducts}}
-      <li><img src="images/products/bigsize/{{coverimage}}" alt="" /><div class="caption">{{name}}</div></li>
+      <li><img src="http://aojiang.b0.upaiyun.com/lg/{{coverimage}}" alt="" /><div class="caption">{{name}}</div></li>
       {{/mainproducts}}
     </ul>
   </div>
@@ -29,13 +29,13 @@
 <div class="divider"></div> 
 
 <div class="row">
+<div class="span12 divider-strip"><h4>主要产品</h4><span class="strip-block"></span></div>
 {{#mainproducts}}
  <div class="span4 block-info">
-  <h4>test</h4>
   <h3><a href="/product/{{_id}}" class="home-title">{{name}}</a></h3>
-  <img src="/images/products/bigsize/{{coverimage}}" alt="" style="margin:25px 0 20px">
+  <img src="http://aojiang.b0.upaiyun.com/lg/{{coverimage}}" alt="" style="margin:25px 0 20px">
   <p>{{introduce}}</p>
-  <a class="btn pull-right" href="/product/{{_id}}">read more</a>
+  <a class="btn pull-right" href="/product/{{_id}}">阅读更多</a>
  </div>
  {{/mainproducts}}
 </div>
@@ -54,10 +54,10 @@
   <ul class="thumbnails">
     {{#products}}
     <li class="span3 item-block">
-     <a href="/images/products/smsize/{{image.[0]}}" class="zoom" rel="prettyPhoto" title="{{name}}"></a>
+     <a href="http://aojiang.b0.upaiyun.com/sm/{{image.[0]}}" class="zoom" rel="prettyPhoto" title="{{name}}"></a>
      <a href="product/{{_id}}" class="link"></a>
       <a class="thumbnail" href="product/{{_id}}">
-        <img src="/images/products/smsize/{{image.[0]}}" alt="example-item">
+        <img src="http://aojiang.b0.upaiyun.com/sm/{{image.[0]}}" alt="example-item">
       </a>
       <div class="desc">
       <a href="product/{{_id}}">{{name}} </a>
@@ -75,12 +75,24 @@
   
   <div class="row">
    <div class="span4">
-    <img src="/img/develop-icon.png" alt="">
+    <img src="http://aojiang.b0.upaiyun.com/sm/543ba7082d449a4f08753105.jpeg" alt="">
    </div>
    <div class="span8">
     <div class="row">
     
     
+    <div class="span4 block-info pull-left">
+      <img class="pull-left" src="/img/develop-icon.png" alt="">
+      <h3>精密的制造</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.</p>
+    </div>
+    
+    <div class="span4 block-info pull-left">
+      <img class="pull-left" src="/img/responsive.png" alt="">
+      <h3><a href="#">精诚的服务</a></h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.</p>
+    </div>
+
     <div class="span4 block-info pull-left">
       <img class="pull-left" src="/img/develop-icon.png" alt="">
       <h3>精密的制造</h3>
@@ -111,12 +123,12 @@
         <div class="span3 blog-home">
          <img src="/img/blog-examples/blog-home.jpg" alt="">
          <ul class="meta pull-left">
-           <li class="data">{{createat}}</li>
+           <li class="data">{{date}}</li>
            <li class="post-format image"><span></span></li>
          </ul>
          <h3><a href="#">{{title}}</a></h3> 
          <p>{{content}}</p>
-         <a href="blog.html" class="btn">Read more</a>
+         <a href="blog.html" class="btn">阅读更多</a>
         </div>
         {{/messages}}
       </div>
@@ -130,8 +142,11 @@
 		<ul class="testimonials-slider" id="testimonials">
       {{#industries}}
 			<li class="testimonials-slide">	
-				 <blockquote><p>{{content}}</p>
-          <small>{{title}}</small></blockquote>
+				  <blockquote>
+            <h5>{{title}}</h5>
+            <p>{{content}}</p>
+            <small>{{author}}</small>
+          </blockquote>
 			</li>
       {{/industries}}
 		</ul>

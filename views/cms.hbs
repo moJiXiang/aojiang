@@ -54,6 +54,7 @@
 						<tr>
 							<th>名称</th>
 							<th>time</th>
+							<th>是否是行业信息</th>
 							<th>action</th>
 						</tr>
 					</thead>
@@ -62,6 +63,7 @@
 						<tr>
 							<td>{{title}}</td>
 							<td>{{createat}}</td>
+							<td>{{isindustry}}</td>
 							<td>
 								<button type="button" class="btn btn-primary delpro" data-id="{{_id}}">删除</button>
 							</td>
@@ -358,28 +360,28 @@
 	      <div class="modal-body" style="min-height:400px;">
 		      	<form class="form-horizontal message" role="form" action="">
 			      	<div class="control-group">
-					    <label class="control-label" for="title">名称</label>
+					    <label class="control-label" for="title">标题</label>
 					    <div class="controls">
-					      <input type="text" name="title" placeholder="T型钉">
+					      <input type="text" name="title" placeholder="标题">
 					    </div>
 				  	</div>
 				  	<div class="control-group error">
-					    <label class="control-label" for="isindustry">is industry</label>
+					    <label class="control-label" for="isindustry">是否是行业信息</label>
 					    <div class="controls">
 				    	<label class="radio">
 						  <input type="radio" name="isindustry" value="true" checked>
-						  yes
+						  是
 						</label>
 						<label class="radio">
 						  <input type="radio" name="isindustry" value="false">
-						  no
+						  否
 						</label>
 				    </div>
 				  	</div>
 				  	<div class="control-group">
-					    <label class="control-label" for="content">content</label>
+					    <label class="control-label" for="content">内容</label>
 					    <div class="controls">
-				      		<textarea name="content" placeholder="产品简介"></textarea>
+				      		<textarea name="content" placeholder="信息内容"></textarea>
 					    </div>
 				  	</div>
 				</form>

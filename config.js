@@ -11,7 +11,7 @@ var config = {
 	imgSizeSm : {width: 300, height: 150},
 	bucketname : "aojiang",
 	username : 'mojixiang',
-	password : 'xiaomo11025270'
+	password : 'daydayup'
 };
 
 module.exports.config = config;

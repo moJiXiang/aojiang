@@ -7,53 +7,104 @@ var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
 var UPYun = require('../upyun/upyun').UPYun;
 var config = require('../config').config;
-var gm = require('gm')
-,	fs = require('fs')
-,	imageMagick = gm.subClass({ imageMagick : true });
+
+var md5 = require('md5');
+var mongoose = require('mongoose');
+var gm = require('gm'),
+	fs = require('fs'),
+	imageMagick = gm.subClass({
+		imageMagick: true
+	});
 
 //初始化空间
-var upyun = new UPYun(config.buckname, config.username, config.password);
+// var upyun = new UPYun(config.bucketname, config.username, config.password);
+var upyun = new UPYun("aojiang", "mojixiang", "daydayup");
 
-function upToYun(src_path_name,target_path_name,callback){
-	var fs =  require('fs');
+function upToYun(src_path_name, target_path_name, callback) {
+	var fs = require('fs');
 	var fileContent = fs.readFileSync(src_path_name);
-	upyun.writeFile(target_path_name, fileContent, false, function(err, data){
-	    if (err) {
-	       callback(err);
-	    }else
-	    	callback(null,data);
+	console.log(target_path_name, fileContent)
+
+	upyun.writeFile(target_path_name, fileContent, false, function(err, data) {
+		if (err) {
+			callback(err);
+		} else
+			callback(null, data);
 	});
 }
 
 router.post('/add', function(req, res) {
 	var product = req.body;
-	Product.createPro(product, function (result) {
-		res.send({status : 200, result: result});
+	Product.createPro(product, function(result) {
+		res.send({
+			status: 200,
+			result: result
+		});
 	})
 })
 
-router.post('/upload/:size/:id', multipartMiddleware,  function(req, res) {
-	res.header('Content-Type', 'text/plain');
-	
-	var path = req.files.img.path;	//获取用户上传过来的文件的当前路径
-	console.log(path);
+function validPic(type) {
+	var suffix = type.split('/')[1];
+	var _id = new mongoose.Types.ObjectId;
+	return _id + '.' + suffix;
+}
+
+router.post('/upload/:size/:id', multipartMiddleware, function(req, res) {
+	var src_path = req.files.img.path; //获取用户上传过来的文件的当前路径
 	var size = req.params.size;
 	var id = req.params.id;
-	var imgname = req.files.img.name;
+	var imgname = validPic(req.files.img.type);
+
 	var width = size == "big" ? config.imgSizeBig.width : config.imgSizeSm.width;
 	var height = size == "big" ? config.imgSizeBig.height : config.imgSizeSm.height;
-	var writepath = size == "big" ? "public/images/products/bigsize/" : "public/images/products/smsize/";
 
-	var src_path_name = path;
-	var target_path_name = imgname;
-	console.log(src_path_name, target_path_name)
-	upToYun(src_path_name, target_path_name, function(err, result){
-		if(err)
-			console.log(err);
-		else {
-			cb(null, result)
-		}
+	var arr = src_path.split('/');
+	arr.shift();
+	arr[arr.length - 1] = imgname;
+	var src_path_name = '';
+	arr.forEach(function(a) {
+		src_path_name += '/' + a;
 	})
+	var target_path_name = size == "big" ? "/lg/" + imgname : "/sm/" + imgname;
+	if (size == "big") {
+		var option = {
+			$set: {
+				coverimage: imgname
+			}
+		}
+	} else {
+		var option = {
+			$push: {
+				image: imgname
+			}
+		}
+	}
+	console.log(src_path_name, target_path_name)
+
+	imageMagick(src_path)
+		.resize(width, height, '!') //加('!')强行把图片缩放成对应尺寸150*150！
+		.autoOrient()
+		.write(src_path_name, function(err) {
+			console.log('&&&*****************')
+			upToYun(src_path_name, target_path_name, function(err, result) {
+				if (err)
+					console.log(err);
+				else {
+					Product.findByIdAndUpdate(id, option, function(err) {
+						if (err) {
+							console.log(err);
+							res.end();
+						} else {
+							res.send(200, {
+								message: 'upload success!'
+							})
+						}
+					});
+				}
+			})
+		})
+
+
 	// imageMagick(path)
 	// .resize(width, height, '!') //加('!')强行把图片缩放成对应尺寸150*150！
 	// .autoOrient()
@@ -89,10 +140,12 @@ router.post('/upload/:size/:id', multipartMiddleware,  function(req, res) {
 router.get('/:id/del', function(req, res) {
 	var id = req.params.id;
 	Product.findByIdAndRemove(id, function(err) {
-		if(err) {
+		if (err) {
 			console.log(err);
-		}else{
-			res.send({status : 200});
+		} else {
+			res.send({
+				status: 200
+			});
 		}
 	});
 })
@@ -101,11 +154,14 @@ router.get('/:id/del', function(req, res) {
 router.get('/:id', function(req, res) {
 	var id = req.params.id;
 	Product.findById(id, function(err, doc) {
-		if(err) {
+		if (err) {
 			console.log(err);
 		} else {
 			console.log(doc)
-			res.render('product', {site : config, product : doc});
+			res.render('product', {
+				site: config,
+				product: doc
+			});
 		}
 	})
 })

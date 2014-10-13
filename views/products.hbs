@@ -9,7 +9,7 @@
           <a href="javascript:void(0)" title="" class="currents">All</a>
       </li>
       <li>
-          <a href="javascript:void(0)" title="">sdf</a>
+          <a href="javascript:void(0)" title="">main</a>
       </li>
   </ul>
 </div>
@@ -18,17 +18,30 @@
 ================================================== -->
  
 <ul class="thumbnails portfolio" id="containment-portfolio">
-  {{#products}}
+  {{#otherproducts}}
     <li class="span3 item-block {{classes}} all">
-      <a class="thumbnail" href="product/{{_id}}">
-        <img src="/images/products/smsize/{{image.[0]}}" alt="example-item">
+      <a class="thumbnail" href="/product/{{_id}}">
+        <img src="http://aojiang.b0.upaiyun.com/sm/{{image.[0]}}" alt="example-item">
       </a>
       <div class="desc">
-        <a href="portfolio-single-2.html">{{name}}</a>
+        <a href="/product/{{_id}}">{{name}}</a>
         <p> <em>{{applyrange}}</em> </p>
       </div>
     </li>
-    {{/products}}
+    {{/otherproducts}}
+  </ul>
+  <ul class="thumbnails portfolio" id="containment-portfolio">
+  {{#mainproducts}}
+    <li class="span3 item-block {{classes}} main">
+      <a class="thumbnail" href="/product/{{_id}}">
+        <img src="http://aojiang.b0.upaiyun.com/sm/{{image.[0]}}" alt="example-item">
+      </a>
+      <div class="desc">
+        <a href="/product/{{_id}}">{{name}}</a>
+        <p> <em>{{applyrange}}</em> </p>
+      </div>
+    </li>
+    {{/mainproducts}}
   </ul>
 </section>
   <div class="divider"></div>
