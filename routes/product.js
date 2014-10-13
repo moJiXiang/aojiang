@@ -63,27 +63,27 @@ router.post('/upload/:size/:id', multipartMiddleware, function(req, res) {
 	var width = size == "big" ? config.imgSizeBig.width : config.imgSizeSm.width;
 	var height = size == "big" ? config.imgSizeBig.height : config.imgSizeSm.height;
 
-	var arr = src_path.split('/');
-	arr.shift();
-	arr[arr.length - 1] = imgname;
-	var src_path_name = '';
-	arr.forEach(function(a) {
-		src_path_name += '/' + a;
-	})
-	var target_path_name = size == "big" ? "/lg/" + imgname : "/sm/" + imgname;
+	// var arr = src_path.split('/');
+	// arr.shift();
+	// arr[arr.length - 1] = imgname;
+	// var src_path_name = '';
+	// arr.forEach(function(a) {
+	// 	src_path_name += '/' + a;
+	// })
+	// var target_path_name = size == "big" ? "/lg/" + imgname : "/sm/" + imgname;
 	console.log(src_path_name, target_path_name)
 	cloudinary.uploader.upload(src_path, function(result) {
 		console.log(result)
 		if (size == "big") {
 			var option = {
 				$set: {
-					coverimage : result.eager[0].url
+					coverimage: result.eager[0].url
 				}
 			}
 		} else {
 			var option = {
 				$push: {
-					image : result.eager[0].url
+					image: result.eager[0].url
 				}
 			}
 		}
