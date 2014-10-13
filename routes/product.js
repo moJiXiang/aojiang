@@ -58,20 +58,11 @@ router.post('/upload/:size/:id', multipartMiddleware, function(req, res) {
 	var src_path = req.files.img.path; //获取用户上传过来的文件的当前路径
 	var size = req.params.size;
 	var id = req.params.id;
-	var imgname = validPic(req.files.img.type);
-
+	// var imgname = validPic(req.files.img.type);
+	console.log(src_path)
 	var width = size == "big" ? config.imgSizeBig.width : config.imgSizeSm.width;
 	var height = size == "big" ? config.imgSizeBig.height : config.imgSizeSm.height;
 
-	// var arr = src_path.split('/');
-	// arr.shift();
-	// arr[arr.length - 1] = imgname;
-	// var src_path_name = '';
-	// arr.forEach(function(a) {
-	// 	src_path_name += '/' + a;
-	// })
-	// var target_path_name = size == "big" ? "/lg/" + imgname : "/sm/" + imgname;
-	console.log(src_path_name, target_path_name)
 	cloudinary.uploader.upload(src_path, function(result) {
 		console.log(result)
 		if (size == "big") {
@@ -104,29 +95,6 @@ router.post('/upload/:size/:id', multipartMiddleware, function(req, res) {
 			crop: "fill"
 		}]
 	});
-	// imageMagick(src_path)
-	// 	.resize(width, height, '!') //加('!')强行把图片缩放成对应尺寸150*150！
-	// .autoOrient()
-	// 	.write(src_path_name, function(err) {
-	// 		console.log('&&&*****************')
-	// 		upToYun(src_path_name, target_path_name, function(err, result) {
-	// 			if (err)
-	// 				console.log(err);
-	// 			else {
-	// 				Product.findByIdAndUpdate(id, option, function(err) {
-	// 					if (err) {
-	// 						console.log(err);
-	// 						res.end();
-	// 					} else {
-	// 						res.send(200, {
-	// 							message: 'upload success!'
-	// 						})
-	// 					}
-	// 				});
-	// 			}
-	// 		})
-	// 	})
-
 })
 
 router.get('/:id/del', function(req, res) {
