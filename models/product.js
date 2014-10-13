@@ -36,7 +36,17 @@ ProductSchema.statics = {
 	 * @return {array}       return product array
 	 */
 	listProduct : function(opt, cb) {
-		var criteria = opt.main ? { main: opt.main } : {main: false};
+		var criteria;
+		console.log('(**************)')
+		console.log(opt.main)
+		if(opt.main) {
+			criteria = {main : opt.main};
+		} else if(opt.main == undefined) {
+			criteria = {};
+		} else {
+			criteria = {main : false};
+		}
+		console.log(criteria)
 		this.find(criteria)
 			.limit(opt.limit)
 			.exec(cb);

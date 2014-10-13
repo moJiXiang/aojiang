@@ -6,6 +6,7 @@ var Product = require('../models').Product;
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
 var UPYun = require('../upyun/upyun').UPYun;
+var cloudinary = require('cloudinary');
 var config = require('../config').config;
 
 var md5 = require('md5');
@@ -15,7 +16,11 @@ var gm = require('gm'),
 	imageMagick = gm.subClass({
 		imageMagick: true
 	});
-
+cloudinary.config({ 
+  cloud_name: 'hmmntcglh', 
+  api_key: '244273668367523', 
+  api_secret: 'y9Pla4IaD0GEmnqnS9bfWOMxWEU' 
+});
 //初始化空间
 // var upyun = new UPYun(config.bucketname, config.username, config.password);
 var upyun = new UPYun("aojiang", "mojixiang", "daydayup");
@@ -66,75 +71,62 @@ router.post('/upload/:size/:id', multipartMiddleware, function(req, res) {
 		src_path_name += '/' + a;
 	})
 	var target_path_name = size == "big" ? "/lg/" + imgname : "/sm/" + imgname;
-	if (size == "big") {
-		var option = {
-			$set: {
-				coverimage: imgname
-			}
-		}
-	} else {
-		var option = {
-			$push: {
-				image: imgname
-			}
-		}
-	}
 	console.log(src_path_name, target_path_name)
-
-	imageMagick(src_path)
-		.resize(width, height, '!') //加('!')强行把图片缩放成对应尺寸150*150！
-		.autoOrient()
-		.write(src_path_name, function(err) {
-			console.log('&&&*****************')
-			upToYun(src_path_name, target_path_name, function(err, result) {
-				if (err)
-					console.log(err);
-				else {
-					Product.findByIdAndUpdate(id, option, function(err) {
-						if (err) {
-							console.log(err);
-							res.end();
-						} else {
-							res.send(200, {
-								message: 'upload success!'
-							})
-						}
-					});
+	cloudinary.uploader.upload(src_path, function(result) {
+		console.log(result)
+		if (size == "big") {
+			var option = {
+				$set: {
+					coverimage : result.eager[0].url
 				}
-			})
-		})
-
-
-	// imageMagick(path)
-	// .resize(width, height, '!') //加('!')强行把图片缩放成对应尺寸150*150！
+			}
+		} else {
+			var option = {
+				$push: {
+					image : result.eager[0].url
+				}
+			}
+		}
+		Product.findByIdAndUpdate(id, option, function(err) {
+			if (err) {
+				console.log(err);
+				res.end();
+			} else {
+				res.send(200, {
+					message: 'upload success!'
+				})
+			}
+		});
+	}, {
+		eager: [{
+			width: width,
+			height: height,
+			crop: "fill"
+		}]
+	});
+	// imageMagick(src_path)
+	// 	.resize(width, height, '!') //加('!')强行把图片缩放成对应尺寸150*150！
 	// .autoOrient()
-	// .write(writepath + imgname, function(err){
-	// 	if (err) {
-	// 		console.log(err);
-	// 		res.end();
-	// 	} else {
-	// 		fs.unlink(path, function() {
-	// 			return res.end();
-	// 		});
-	// 		if(size == "big"){
+	// 	.write(src_path_name, function(err) {
+	// 		console.log('&&&*****************')
+	// 		upToYun(src_path_name, target_path_name, function(err, result) {
+	// 			if (err)
+	// 				console.log(err);
+	// 			else {
+	// 				Product.findByIdAndUpdate(id, option, function(err) {
+	// 					if (err) {
+	// 						console.log(err);
+	// 						res.end();
+	// 					} else {
+	// 						res.send(200, {
+	// 							message: 'upload success!'
+	// 						})
+	// 					}
+	// 				});
+	// 			}
+	// 		})
+	// 	})
 
-	// 			Product.findByIdAndUpdate(id, {$set:{coverimage : imgname }}, function(err) {
-	// 				if(err) {
-	// 					console.log(err);
-	// 					res.end();
-	// 				}
-	// 			});
-	// 		} else {
-	// 			console.log(size);
-	// 			Product.findByIdAndUpdate(id, {$push:{image : imgname}}, function(err) {
-	// 				if(err) {
-	// 					console.log(err);
-	// 					res.end();
-	// 				}
-	// 			});
-	// 		}
-	// 	}
-	// });
 })
 
 router.get('/:id/del', function(req, res) {

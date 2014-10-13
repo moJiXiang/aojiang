@@ -12,7 +12,7 @@
    <!-- Slideshow -->
     <ul class="rslides rslides1">
       {{#mainproducts}}
-      <li><img src="http://aojiang.b0.upaiyun.com/lg/{{coverimage}}" alt="" /><div class="caption">{{name}}</div></li>
+      <li><img src="{{coverimage}}" alt="" /><div class="caption">{{name}}</div></li>
       {{/mainproducts}}
     </ul>
   </div>
@@ -33,7 +33,7 @@
 {{#mainproducts}}
  <div class="span4 block-info">
   <h3><a href="/product/{{_id}}" class="home-title">{{name}}</a></h3>
-  <img src="http://aojiang.b0.upaiyun.com/lg/{{coverimage}}" alt="" style="margin:25px 0 20px">
+  <img src="{{coverimage}}" alt="" style="margin:25px 0 20px">
   <p>{{introduce}}</p>
   <a class="btn pull-right" href="/product/{{_id}}">阅读更多</a>
  </div>
@@ -54,10 +54,10 @@
   <ul class="thumbnails">
     {{#products}}
     <li class="span3 item-block">
-     <a href="http://aojiang.b0.upaiyun.com/sm/{{image.[0]}}" class="zoom" rel="prettyPhoto" title="{{name}}"></a>
+     <a href="{{image.[0]}}" class="zoom" rel="prettyPhoto" title="{{name}}"></a>
      <a href="product/{{_id}}" class="link"></a>
       <a class="thumbnail" href="product/{{_id}}">
-        <img src="http://aojiang.b0.upaiyun.com/sm/{{image.[0]}}" alt="example-item">
+        <img src="{{image.[0]}}" alt="example-item">
       </a>
       <div class="desc">
       <a href="product/{{_id}}">{{name}} </a>
@@ -75,7 +75,7 @@
   
   <div class="row">
    <div class="span4">
-    <img src="http://aojiang.b0.upaiyun.com/sm/543ba7082d449a4f08753105.jpeg" alt="">
+    <img src="img/hezuo.jpeg" alt="">
    </div>
    <div class="span8">
     <div class="row">
